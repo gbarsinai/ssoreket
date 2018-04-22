@@ -181,9 +181,6 @@ void printAll(const char *path, int mode, const char* parent)
 		while ((dir = readdir(d)) != NULL)
 		{
 			printf("%s\n", dir->d_name);
-			//printf("HEB: [%x] [%x]\n", dir->d_name[0], dir->d_name[1]);
-			//printf("HEB: [%c] [%c]\n", dir->d_name[0], dir->d_name[1]);
-//			printf("-----111-------------------------\n");
 			if (!strcmp(dir->d_name, ".") ||
 				!strcmp(dir->d_name, "..") ||
 				!strcmp(dir->d_name, "Thumbs.db") ||
@@ -191,10 +188,8 @@ void printAll(const char *path, int mode, const char* parent)
 			{
 				continue;
 			}
-//			printf("-----2-----------%s-------------- \n", dir->d_name);
 			if (dir->d_type == DT_DIR )
 			{
-//				printf("-----2--1-----------------------\n");
 				char newDir[MAX_PATH] = {0};
 				int shouldBreak = 0;
 
@@ -229,29 +224,29 @@ void printAll(const char *path, int mode, const char* parent)
 				}
 				if (mode == M_A || mode == M_B)
 				{
-//					printf("-----3-------------------------\n");
 					printAll(newDir, mode, parent);
 				}else
 				{
-//					printf("-----4-------------------------\n");
 					printAll(newDir, mode, dir->d_name);
 				}
-				if (shouldBreak && !(g_choice == CHOICE_MAKE_AB))
+				if (shouldBreak)
 				{
-//					printf("-----5-------------------------\n");
-					char path_a[MAX_PATH] = {'\0'};
-					char path_b[MAX_PATH] = {'\0'};
-					int reta = 0;
-					int retb = 0;
-
-					sprintf(path_a, "%s/%s", path, "_a");
-					sprintf(path_b, "%s/%s", path, "_b");
-//					printf("-----6-------------------------\n");
-					reta = rmdir(path_a);
-					retb = rmdir(path_b);
-					if (reta == -1 || retb == -1)
+					if (g_choice != CHOICE_MAKE_AB)
 					{
-						printf("[error %d] Fail on delete: %s OR %s\n", errno, path_a, path_b);
+						//Delete folders _a and _b
+						char path_a[MAX_PATH] = {'\0'};
+						char path_b[MAX_PATH] = {'\0'};
+						int reta = 0;
+						int retb = 0;
+
+						sprintf(path_a, "%s/%s", path, "_a");
+						sprintf(path_b, "%s/%s", path, "_b");
+						reta = rmdir(path_a);
+						retb = rmdir(path_b);
+						if (reta == -1 || retb == -1)
+						{
+							printf("[error %d] Fail on delete: %s OR %s\n", errno, path_a, path_b);
+						}
 					}
 					return;
 				}
@@ -263,9 +258,7 @@ void printAll(const char *path, int mode, const char* parent)
 				{
 					return;
 				}
-//				printf("-----7-------------------------\n");
 				setFileList(d, dir);
-//				printf("-----8-------------------------\n");
 				sortFileList();
 
 				if (mode == M_FIX_IMPROVED)
