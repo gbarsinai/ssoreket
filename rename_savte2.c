@@ -341,7 +341,9 @@ int main(int argc, char **argv)
 	else
 		g_choice = atoi(argv[1]);
 	//g_choice = 2;
-	if (g_choice != CHOICE_IMP && g_choice != CHOICE_RENAME)
+	if (g_choice != CHOICE_IMP &&
+		g_choice != CHOICE_RENAME &&
+		g_choice != CHOICE_MAKE_AB)
 	{
 		printf("Choice %d not supported yet. by.", g_choice);
 	}else
