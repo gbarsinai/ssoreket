@@ -36,6 +36,7 @@ int readQR(char* jpgPath, char* outBuff)
 	if ((statFile.st_size > g_config_max_qrSize || statFile.st_size < g_config_min_qrSize) &&
 		(statFile.st_size > g_config_max_scand_qrSize || statFile.st_size < g_config_min_scand_qrSize))
 	{
+		printf("%s Not QR size\n", jpgPath);
 		return FALSE;
 	}
 
@@ -54,6 +55,7 @@ int readQR(char* jpgPath, char* outBuff)
 
 	if(strncmp(value, "SSQR_", 5) != 0)
 	{
+		printf("%s QR isn't starting in SSQR_\n", jpgPath);
 		return FALSE;
 	}
 
