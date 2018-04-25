@@ -322,7 +322,6 @@ void printAll(const char *path, int mode, const char* parent)
 					}
 				}
 			}
-//			printf("-----2------2-------------------\n");
 			//closedir(d);
 		}
 	}

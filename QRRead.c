@@ -32,12 +32,15 @@ int readQR(char* jpgPath, char* outBuff)
 	char value[100] = {0};
 	struct stat statFile;
 
-	stat(jpgPath, &statFile);
-	if ((statFile.st_size > g_config_max_qrSize || statFile.st_size < g_config_min_qrSize) &&
-		(statFile.st_size > g_config_max_scand_qrSize || statFile.st_size < g_config_min_scand_qrSize))
+	if (FALSE)//(g_config_max_qrSize != 0) //Disabled
 	{
-		printf("%s Not QR size\n", jpgPath);
-		return FALSE;
+		stat(jpgPath, &statFile);
+		if ((statFile.st_size > g_config_max_qrSize || statFile.st_size < g_config_min_qrSize) &&
+				(statFile.st_size > g_config_max_scand_qrSize || statFile.st_size < g_config_min_scand_qrSize))
+		{
+			printf("%s Not QR size. its size is %d\n", jpgPath, (int)statFile.st_size);
+			return FALSE;
+		}
 	}
 
 	/* Open the command for reading. */

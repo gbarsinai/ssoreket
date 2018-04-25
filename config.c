@@ -61,5 +61,10 @@ int config()
         free(line);
     }
 
+    printf("g_config_max_qrSize: %d\n", g_config_max_qrSize);
+    printf("g_config_min_qrSize: %d\n", g_config_min_qrSize);
+    printf("g_config_max_scand_qrSize: %d\n", g_config_max_scand_qrSize);
+    printf("g_config_min_scand_qrSize: %d\n", g_config_min_scand_qrSize);
+
 	return 1;
 }
