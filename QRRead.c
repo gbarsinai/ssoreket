@@ -125,7 +125,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 			res += mkdir(newDir);
 			if (res != 0)
 			{
-				printf("ERROR 3 !!!!!!!!!!!!!!!!");
+				printf("ERROR 3 !!!!!!!!!!!!!!!!\n");
 				exit(1);
 			}
 			remove(fullPath); // delete QR
@@ -138,9 +138,9 @@ int renameQR(const char *path, char** fileList, int listLen)
 		case QR_TYPE_AD:
 			if (!isMiddleFound)
 			{
-				printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				printf("WARRNING - middle not found for album %s.", newDirName);
-				printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+				printf("WARRNING - middle not found for album %s.\n", newDirName);
+				printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 			}
 			isMiddleFound = FALSE;
 			strcpy(newDirName, &(val[3]));
@@ -152,7 +152,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 			res += mkdir(newDir);
 			if (res != 0)
 			{
-				printf("ERROR 3.5 !!!!!!!!!!!!!!!!");
+				printf("ERROR 3.5 !!!!!!!!!!!!!!!!\n");
 				exit(1);
 			}
 			side = 'a';
@@ -163,7 +163,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 		default:
 			if (newDirName == NULL)
 			{
-				printf("ERROR 4 !!!!!!!!!!!!!!!!");
+				printf("ERROR 4 !!!!!!!!!!!!!!!!\n");
 				exit(1);
 			}
 			if (side != 0)
@@ -175,7 +175,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 			}
 			if (rename(fullPath, newFullPath) == -1)
 			{
-				printf("ERROR 5 !!!!!!!!!!!!!!!!");
+				printf("ERROR 5 !!!!!!!!!!!!!!!!\n");
 				exit(1);
 			}
 			break;
