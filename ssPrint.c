@@ -11,9 +11,8 @@
 
 char scanfDup[100];
 
-static int print_are_you_sure(int choice)
+static int choiceToInt(int choice)
 {
-	char c = 0;
 	switch (choice) {
 	case '0':
 		exit(0);
@@ -22,20 +21,13 @@ static int print_are_you_sure(int choice)
 	case '2':
 	case '3':
 	case '4':
-		printf("\n===== Are you sure ? ======\n");
-		printf("Choice %c (y/n)?\n", choice);
 		break;
 	default:
 		printf("\nInvalid choice.\n");
 		return 0;
 		break;
 	}
-	scanf("%c%c", &c, scanfDup);
-	if (c == 'y' || c == 'Y')
-	{
-		return 1;
-	}
-	return 0;
+	return 1;
 }
 
 int getChoice()
@@ -53,7 +45,7 @@ int getChoice()
 		printf("========================\n");
 		printf("Enter your choice: ");
 		scanf("%c%c", &c, scanfDup);
-	}while(!print_are_you_sure(c));
+	}while(!choiceToInt(c));
 	return c - '0';
 }
 

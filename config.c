@@ -12,6 +12,7 @@
 #include "config.h"
 
 #define CONFIG_FILE_PATH "C:/SSQR/ssqr_config.txt"
+#define VERSION "2.0.4"
 
 int config()
 {
@@ -25,7 +26,7 @@ int config()
     	printf("= No Configuration file was found. (%s).\n", CONFIG_FILE_PATH);
         return 1;
     }
-
+    printf("Version: %s\n\n", VERSION);
     printf("Configuration:\n");
     while ((read = getline(&line, &len, fp)) != -1) {
     	  char *key;
@@ -61,10 +62,10 @@ int config()
         free(line);
     }
 
-    printf("g_config_max_qrSize: %d\n", g_config_max_qrSize);
-    printf("g_config_min_qrSize: %d\n", g_config_min_qrSize);
-    printf("g_config_max_scand_qrSize: %d\n", g_config_max_scand_qrSize);
-    printf("g_config_min_scand_qrSize: %d\n", g_config_min_scand_qrSize);
+//    printf("g_config_max_qrSize: %d\n", g_config_max_qrSize);
+//    printf("g_config_min_qrSize: %d\n", g_config_min_qrSize);
+//    printf("g_config_max_scand_qrSize: %d\n", g_config_max_scand_qrSize);
+//    printf("g_config_min_scand_qrSize: %d\n", g_config_min_scand_qrSize);
 
 	return 1;
 }
