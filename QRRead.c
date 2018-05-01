@@ -26,8 +26,9 @@
 int readQR(char* jpgPath, char* outBuff)
 {
 	char cmd[MAX_PATH] = {0};
-	strcpy(cmd, "zbarimg.exe --raw -q ");
+	strcpy(cmd, "zbarimg.exe --raw -q \"");
 	strcat(cmd, jpgPath);
+	strcat(cmd, "\"");
 	FILE *fp;
 	char value[100] = {0};
 	struct stat statFile;
