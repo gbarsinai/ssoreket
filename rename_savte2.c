@@ -267,19 +267,6 @@ void printAll(const char *path, int mode, const char* parent)
 					return;
 				}
 
-				//=== For QR
-				if (renameQR(path, g_fileList, g_fileListLen))
-				{
-					printf("QR handled.\n");
-					//Run again after parsing QR.
-					if (g_choice != CHOICE_MAKE_AB)
-						printAll(path, mode, parent);
-					return;
-				}else if (g_choice == CHOICE_MAKE_AB)
-				{
-					return;
-				}
-				//==========
 				if (g_choice == CHOICE_REMOVE_EMPTY)
 				{
 					int emptyIndex = 0;
@@ -294,7 +281,7 @@ void printAll(const char *path, int mode, const char* parent)
 						sprintf(newName , "%s/%d %s%s", newPath, emptyIndex, parent, ".jpg");
 						sprintf(oldName , "%s/%s", path, g_fileList[i]);
 						fileNameLen = strlen(oldName);
-						if (fileNameLen > 3 && !strcmp(&(oldName[fileNameLen - 3]), "D__"))
+						if (fileNameLen > 3 && !strcmp(&(oldName[fileNameLen - 7]), "D__.jpg"))
 						{
 							remove(oldName);
 							continue;
@@ -308,6 +295,20 @@ void printAll(const char *path, int mode, const char* parent)
 					}
 					return;
 				}
+
+				//=== For QR
+				if (renameQR(path, g_fileList, g_fileListLen))
+				{
+					printf("QR handled.\n");
+					//Run again after parsing QR.
+					if (g_choice != CHOICE_MAKE_AB)
+						printAll(path, mode, parent);
+					return;
+				}else if (g_choice == CHOICE_MAKE_AB)
+				{
+					return;
+				}
+				//==========
 
 				for (int  i = 0; i < g_fileListLen; ++i) {
 					char newName[MAX_PATH] = {0};
@@ -367,16 +368,8 @@ int main(int argc, char **argv)
 		g_choice = getChoice();
 	else
 		g_choice = atoi(argv[1]);
-	//g_choice = 2;
-	if (g_choice != CHOICE_IMP &&
-			g_choice != CHOICE_RENAME &&
-			g_choice != CHOICE_MAKE_AB)
-	{
-		printf("Choice %d not supported yet. by.", g_choice);
-	}else
-	{
-		printAll(".", M_INVALIDE, "");
-	}
+
+	printAll(".", M_INVALIDE, "");
 
 	printf("Done.");
 	getchar();
