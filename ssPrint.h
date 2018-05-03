@@ -12,6 +12,7 @@
 #define CHOICE_RENAME 2
 #define CHOICE_IMP 3
 #define CHOICE_MAKE_AB 4
+#define CHOICE_REMOVE_EMPTY 5
 
 int getChoice();
 

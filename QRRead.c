@@ -100,6 +100,8 @@ int renameQR(const char *path, char** fileList, int listLen)
 	char newDirName[MAX_PATH] = {0};
 	int type = QR_TYPE_NONE;
 	int isMiddleFound = TRUE;
+	char deleteE[5] = "_D__";
+	char* del = NULL;
 
 	sprintf(fullPath , "%s/%s", path, fileList[0]);
 	if(!readQR(fullPath, val))
@@ -110,6 +112,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 	for (int  i = 0; i < listLen; ++i)
 	{
 		printf("QR process: %d / %d\r", i + 1, listLen);
+		del = NULL;
 		sprintf(fullPath , "%s/%s", path, fileList[i]);
 		if(readQR(fullPath, val))
 		{
@@ -160,6 +163,8 @@ int renameQR(const char *path, char** fileList, int listLen)
 			remove(fullPath); // delete QR
 			break;
 		case QR_TYPE_AD_E:
+			del = (char*)deleteE;
+			/* no break */
 		case QR_TYPE_NONE:
 		default:
 			if (newDirName == NULL)
@@ -169,10 +174,10 @@ int renameQR(const char *path, char** fileList, int listLen)
 			}
 			if (side != 0)
 			{
-				sprintf(newFullPath, "%s/%s/_%c/%s", path, newDirName, side, fileList[i]);
+				sprintf(newFullPath, "%s/%s/_%c/%s%s", path, newDirName, side, fileList[i], del);
 			}else
 			{
-				sprintf(newFullPath, "%s/%s/%s", path, newDirName, fileList[i]);
+				sprintf(newFullPath, "%s/%s/%s%s", path, newDirName, fileList[i], del);
 			}
 			if (rename(fullPath, newFullPath) == -1)
 			{

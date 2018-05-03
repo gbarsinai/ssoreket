@@ -182,9 +182,9 @@ void printAll(const char *path, int mode, const char* parent)
 		{
 			printf("%s\n", dir->d_name);
 			if (!strcmp(dir->d_name, ".") ||
-				!strcmp(dir->d_name, "..") ||
-				!strcmp(dir->d_name, "Thumbs.db") ||
-				!strcmp(dir->d_name, "SS_QR.exe"))
+					!strcmp(dir->d_name, "..") ||
+					!strcmp(dir->d_name, "Thumbs.db") ||
+					!strcmp(dir->d_name, "SS_QR.exe"))
 			{
 				continue;
 			}
@@ -280,6 +280,34 @@ void printAll(const char *path, int mode, const char* parent)
 					return;
 				}
 				//==========
+				if (g_choice == CHOICE_REMOVE_EMPTY)
+				{
+					int emptyIndex = 0;
+					for (int  i = 0; i < g_fileListLen; ++i) {
+						char newName[MAX_PATH] = {0};
+						char oldName[MAX_PATH] = {0};
+						int ret = 0;
+						char newPath[MAX_PATH] = {0};
+						int fileNameLen = 0;
+
+						sprintf(newPath, "%s", path);
+						sprintf(newName , "%s/%d %s%s", newPath, emptyIndex, parent, ".jpg");
+						sprintf(oldName , "%s/%s", path, g_fileList[i]);
+						fileNameLen = strlen(oldName);
+						if (fileNameLen > 3 && !strcmp(&(oldName[fileNameLen - 3]), "D__"))
+						{
+							remove(oldName);
+							continue;
+						}
+						ret = rename(oldName, newName);
+						emptyIndex++;
+						if (ret == -1)
+						{
+							printf("[%d] Fail on file: %s\n", errno, oldName);
+						}
+					}
+					return;
+				}
 
 				for (int  i = 0; i < g_fileListLen; ++i) {
 					char newName[MAX_PATH] = {0};
@@ -314,7 +342,7 @@ void printAll(const char *path, int mode, const char* parent)
 					{
 						continue;
 					}
-					printf("From %s to %s\n", oldName, newName);
+					//printf("From %s to %s\n", oldName, newName);
 					ret = rename(oldName, newName);
 					if (ret == -1)
 					{
@@ -341,8 +369,8 @@ int main(int argc, char **argv)
 		g_choice = atoi(argv[1]);
 	//g_choice = 2;
 	if (g_choice != CHOICE_IMP &&
-		g_choice != CHOICE_RENAME &&
-		g_choice != CHOICE_MAKE_AB)
+			g_choice != CHOICE_RENAME &&
+			g_choice != CHOICE_MAKE_AB)
 	{
 		printf("Choice %d not supported yet. by.", g_choice);
 	}else
