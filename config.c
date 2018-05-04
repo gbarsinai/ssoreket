@@ -27,14 +27,14 @@ int config()
         return 1;
     }
     printf("Version: %s\n\n", VERSION);
-    printf("Configuration:\n");
+   // printf("Configuration:\n");
     while ((read = getline(&line, &len, fp)) != -1) {
     	  char *key;
     	  char *val;
     	  key = strtok (line, "=");
     	  val = strtok (NULL, "=");
     	  val[strlen(val) - 1] = '\0';
-    	  printf("%s = %s\n", key, val);
+    	 // printf("%s = %s\n", key, val);
 
     	  //DEFAULTS
     	  g_config_max_qrSize = 1024*100;

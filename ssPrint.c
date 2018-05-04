@@ -24,7 +24,7 @@ static int choiceToInt(int choice)
 	case '5':
 		break;
 	default:
-		printf("\nInvalid choice.\n");
+		printf("\nInvalid choice. %d\n", choice);
 		return 0;
 		break;
 	}
