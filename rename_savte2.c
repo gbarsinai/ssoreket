@@ -297,15 +297,9 @@ void printAll(const char *path, int mode, const char* parent)
 				}
 
 				//=== For QR
-				if (renameQR(path, g_fileList, g_fileListLen))
+				if (g_choice == CHOICE_MAKE_AB)
 				{
-					printf("QR handled.\n");
-					//Run again after parsing QR.
-					if (g_choice != CHOICE_MAKE_AB)
-						printAll(path, mode, parent);
-					return;
-				}else if (g_choice == CHOICE_MAKE_AB)
-				{
+					renameQR(path, g_fileList, g_fileListLen);
 					return;
 				}
 				//==========
@@ -313,6 +307,7 @@ void printAll(const char *path, int mode, const char* parent)
 				for (int  i = 0; i < g_fileListLen; ++i) {
 					char newName[MAX_PATH] = {0};
 					char oldName[MAX_PATH] = {0};
+					int oldNameLen = 0;
 					int ret = 0;
 					int index = i;
 					char newPath[MAX_PATH] = {0};
@@ -332,8 +327,6 @@ void printAll(const char *path, int mode, const char* parent)
 					{
 						newPath[strlen(newPath)-3] = '\0';
 					}
-					sprintf(newName , "%s/%d %s%s", newPath, index, parent, ".jpg");
-					sprintf(oldName , "%s/%s", path, g_fileList[i]);
 					if (mode == M_INVALIDE)
 					{
 						printf("Fail on file (no mode was set): %s\n", oldName);
@@ -343,7 +336,15 @@ void printAll(const char *path, int mode, const char* parent)
 					{
 						continue;
 					}
-					//printf("From %s to %s\n", oldName, newName);
+					sprintf(oldName , "%s/%s", path, g_fileList[i]);
+					oldNameLen = strlen(oldName);
+					if (oldNameLen > 3 && !strcmp(&(oldName[oldNameLen - 7]), "D__.jpg"))
+					{
+						sprintf(newName , "%s/%d %s_D__.jpg%s", newPath, index, parent, ".jpg");
+					}else
+					{
+						sprintf(newName , "%s/%d %s%s", newPath, index, parent, ".jpg");
+					}
 					ret = rename(oldName, newName);
 					if (ret == -1)
 					{

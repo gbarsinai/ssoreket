@@ -39,7 +39,7 @@ int getChoice()
 	{
 		printf("\n========================\n");
 		printf(" 1 - Prepare for crop AD.\n");
-		printf(" 2 - Rename all.\n");
+		printf(" 2 - Rename.\n");
 		printf(" 3 - Fix improved into folders.\n");
 		printf(" 4 - Make _a _b folders only.\n");
 		printf(" 5 - Remove empty.\n");
