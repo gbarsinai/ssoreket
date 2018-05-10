@@ -100,7 +100,7 @@ int renameQR(const char *path, char** fileList, int listLen)
 	char newDirName[MAX_PATH] = {0};
 	int type = QR_TYPE_NONE;
 	int isMiddleFound = TRUE;
-	char* deleteE = "_D__";
+	char* deleteE = "_D__.jpg";
 	char* del = "";
 
 	sprintf(fullPath , "%s/%s", path, fileList[0]);
