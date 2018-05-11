@@ -35,6 +35,7 @@
 #endif
 
 int g_choice;
+char* s_exeName;
 
 char *g_fileList[10000];
 int g_fileListLen = 0;
@@ -184,7 +185,7 @@ void printAll(const char *path, int mode, const char* parent)
 			if (!strcmp(dir->d_name, ".") ||
 					!strcmp(dir->d_name, "..") ||
 					!strcmp(dir->d_name, "Thumbs.db") ||
-					!strcmp(dir->d_name, "SS_QR.exe"))
+					!strcmp(dir->d_name, s_exeName))
 			{
 				continue;
 			}
@@ -364,6 +365,7 @@ int main(int argc, char **argv)
 		getchar();
 		return 1;
 	}
+	s_exeName = strrchr(argv[0], '\\') + 1;
 
 	if (argc == 1)
 		g_choice = getChoice();
