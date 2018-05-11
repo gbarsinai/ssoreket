@@ -12,7 +12,7 @@
 #include "config.h"
 
 #define CONFIG_FILE_PATH "C:/SSQR/ssqr_config.txt"
-#define VERSION "2.1.2"
+#define VERSION "2.1.3"
 
 int config()
 {
