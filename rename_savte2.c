@@ -341,7 +341,7 @@ void printAll(const char *path, int mode, const char* parent)
 					oldNameLen = strlen(oldName);
 					if (oldNameLen > 3 && !strcmp(&(oldName[oldNameLen - 7]), "D__.jpg"))
 					{
-						sprintf(newName , "%s/%d %s_D__.jpg%s", newPath, index, parent, ".jpg");
+						sprintf(newName , "%s/%d %s_D__%s", newPath, index, parent, ".jpg");
 					}else
 					{
 						sprintf(newName , "%s/%d %s%s", newPath, index, parent, ".jpg");
