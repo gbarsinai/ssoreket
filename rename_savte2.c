@@ -365,8 +365,16 @@ int main(int argc, char **argv)
 		getchar();
 		return 1;
 	}
-	s_exeName = strrchr(argv[0], '\\') + 1;
-
+	s_exeName = strrchr(argv[0], '\\');
+	if (s_exeName != NULL)
+	{
+		printf("2");
+		s_exeName++; //Skip the '\'
+	}else
+	{
+		printf("3");
+		s_exeName = argv[0];
+	}
 	if (argc == 1)
 		g_choice = getChoice();
 	else
