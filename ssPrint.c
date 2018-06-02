@@ -22,6 +22,7 @@ static int choiceToInt(int choice)
 	case '3':
 	case '4':
 	case '5':
+	case '6':
 		break;
 	default:
 		printf("\nInvalid choice. %d\n", choice);
@@ -43,6 +44,7 @@ int getChoice()
 		printf(" 3 - Fix improved into folders.\n");
 		printf(" 4 - Make _a _b folders only.\n");
 		printf(" 5 - Remove empty.\n");
+		printf(" 6 - 4->2->5 .\n");
 		printf(" 0 - Exit.\n");
 		printf("========================\n");
 		printf("Enter your choice: ");

@@ -368,11 +368,9 @@ int main(int argc, char **argv)
 	s_exeName = strrchr(argv[0], '\\');
 	if (s_exeName != NULL)
 	{
-		printf("2");
 		s_exeName++; //Skip the '\'
 	}else
 	{
-		printf("3");
 		s_exeName = argv[0];
 	}
 	if (argc == 1)
@@ -380,7 +378,18 @@ int main(int argc, char **argv)
 	else
 		g_choice = atoi(argv[1]);
 
-	printAll(".", M_INVALIDE, "");
+	if (g_choice == CHOICE_AB_RENAME_EMPTY)
+	{
+		g_choice = CHOICE_MAKE_AB;
+		printAll(".", M_INVALIDE, "");
+		g_choice = CHOICE_RENAME;
+		printAll(".", M_INVALIDE, "");
+		g_choice = CHOICE_REMOVE_EMPTY;
+		printAll(".", M_INVALIDE, "");
+	}else
+	{
+		printAll(".", M_INVALIDE, "");
+	}
 
 	printf("Done.");
 	getchar();
