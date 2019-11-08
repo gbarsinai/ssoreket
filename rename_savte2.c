@@ -21,12 +21,14 @@
 #define HEB
 
 #ifdef HEB
+#define DIR_SHKUFIYOT "שקופיות"
 #define DIR_TIFZORET "תפזורת"
 #define DIR_A "אלבומים"
 #define DIR_AD "אלבומי דבק"
 #define DIR_AK "אלבומי כיסים"
 #define DIR_IMPROVED "משופרות"
 #else
+#define DIR_SHKUFIYOT "SH"
 #define DIR_TIFZORET "T"
 #define DIR_A "A"
 #define DIR_AD "AD"
@@ -200,7 +202,9 @@ void printAll(const char *path, int mode, const char* parent)
 					printf("enter M_REVERSE\n");
 					mode = M_REVERSE;
 				}
-				if (!strcmp(DIR_TIFZORET, dir->d_name) || !strcmp(DIR_IMPROVED, dir->d_name))
+				if (!strcmp(DIR_TIFZORET, dir->d_name) ||
+					!strcmp(DIR_SHKUFIYOT, dir->d_name) || 
+					!strcmp(DIR_IMPROVED, dir->d_name))
 				{
 					if (!strcmp(DIR_IMPROVED, dir->d_name) && g_choice == CHOICE_IMP)
 					{
