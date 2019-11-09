@@ -2,3 +2,4 @@
 *.o
 /eclipse-workspace/.metadata/
 *.exe
+*.settings.xml

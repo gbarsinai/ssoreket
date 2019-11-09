@@ -19,9 +19,7 @@ func main() {
 			if len(splitName) == 2{			
 			
 				runes := []rune(splitName[1])
-				dirName:= string(runes[0:4])
-				
-				
+				dirName:= string(runes[0:len(splitName[1]) - 4])
 				
 				if _, err := os.Stat(dirName); os.IsNotExist(err) {
 					fmt.Println("Create Dir: " + dirName)
