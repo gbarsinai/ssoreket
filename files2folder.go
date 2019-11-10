@@ -18,8 +18,8 @@ func main() {
 			splitName := strings.SplitAfterN(f.Name(), " ", 2)
 			if len(splitName) == 2{			
 			
-				runes := []rune(splitName[1])
-				dirName:= string(runes[0:len(splitName[1]) - 4])
+				dirName:= strings.Trim(splitName[1], ".jpg")
+				fmt.Println("Dir: " + dirName)
 				
 				if _, err := os.Stat(dirName); os.IsNotExist(err) {
 					fmt.Println("Create Dir: " + dirName)
