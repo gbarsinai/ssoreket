@@ -1,9 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
+chcp 65001
 	
 :::::::::::::::::: COUNTER :::::::::::::::::::::
-	IF EXIST ™…”˜…š (
-		cd ™…”˜…š
+	IF EXIST ××©×•×¤×¨×•×ª (
+		cd ××©×•×¤×¨×•×ª
 		for /r %%f in (*) do (				
 			set /A Cm=Cm+1
 		)
@@ -11,18 +12,18 @@ setlocal enabledelayedexpansion
 	)
 	echo Improved:	!Cm!
 	
-	IF EXIST €Œ…‰ (
-		cd €Œ…‰
-		IF EXIST "€Œ…‰ ƒ—" (
-			cd "€Œ…‰ ƒ—"
+	IF EXIST ××œ×‘×•××™× (
+		cd ××œ×‘×•××™×
+		IF EXIST "××œ×‘×•××™ ×“×‘×§" (
+			cd "××œ×‘×•××™ ×“×‘×§"
 			for /r %%f in (*) do (				
 				set /A Cad=Cad+1
 			)
 			cd ..
 		)
 		echo Albums Glue:	!Cad!
-		IF EXIST "€Œ…‰ ‹‰‘‰" (
-			cd "€Œ…‰ ‹‰‘‰"
+		IF EXIST "××œ×‘×•××™ ×›×™×¡×™×" (
+			cd "××œ×‘×•××™ ×›×™×¡×™×"
 			for /r %%f in (*) do (				
 				set /A Cak=Cak+1
 			)
@@ -32,16 +33,35 @@ setlocal enabledelayedexpansion
 		cd ..
 	)
 	
-	IF EXIST š”†…˜š (
-		cd š”†…˜š
+	IF EXIST ×ª×¤×–×•×¨×ª (
+		cd ×ª×¤×–×•×¨×ª
 		for /r %%f in (*) do (				
 			set /A Ct=Ct+1
 		)
 		cd ..
 	)
 	echo Bulk:		!Ct!
+	
+		IF EXIST × ×’×˜×™×‘×™× (
+		cd × ×’×˜×™×‘×™×
+		for /r %%f in (*) do (				
+			set /A Cn=Cn+1
+		)
+		cd ..
+	)
+	echo Negativs:	!Cn!
+	
+		IF EXIST ×©×§×•×¤×™×•×ª (
+		cd ×©×§×•×¤×™×•×ª
+		for /r %%f in (*) do (				
+			set /A Cs=Cs+1
+		)
+		cd ..
+	)
+	echo SHKUFIYOT:	!Cs!
+	
 	echo -------------------------------
-	set /A total=!Cm!+!Cad!+!Cak!+!Ct!
+	set /A total=!Cm!+!Cad!+!Cak!+!Ct!+!Cn!+!Cs!+0
 	echo Total: %total%
 	
 echo Done.
