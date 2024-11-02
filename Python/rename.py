@@ -56,7 +56,7 @@ def show_summary_window(processed_folders_list):
     folder_list_text.config(state=tk.DISABLED)  # Make text read-only
 
     # OK button to close the summary window
-    ok_button = tk.Button(summary_window, text="OK", command=summary_window.destroy)
+    ok_button = tk.Button(summary_window, text="OK", command=summary_window.destroy, width=10, height=2, font=("Helvetica", 16))
     ok_button.pack(pady=(0, 10))
 
     # Keep the summary window open
