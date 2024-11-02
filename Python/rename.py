@@ -1,40 +1,27 @@
 import os
+import tkinter as tk
+from tkinter import filedialog
 
-def rename_files_in_subfolders(root_folder):
-    # Get the parent directory name
-    parent_dir_name = os.path.basename(os.path.normpath(root_folder))
+def rename_files_in_folder(folder_path):
+    for root, dirs, files in os.walk(folder_path):
+        if files:
+            parent_folder_name = os.path.basename(root)
+            if "אלבומי כיסים" in root:
+                files = sorted(files, reverse=True)
+            else:
+                files = sorted(files)
+            for index, filename in enumerate(files):
+                file_extension = os.path.splitext(filename)[1]
+                new_name = f"{parent_folder_name}_{index + 1}{file_extension}"
+                os.rename(os.path.join(root, filename), os.path.join(root, new_name))
+                print(f"Renamed {filename} to {new_name}")
 
-    #if the renaming process has already started exit the function
-    if os.path.exists(os.path.join(root_folder, "renaming_process.txt")):
-        print("The renaming process has already started")
-        return
-    
-    # place a file to indicate the renaming process in the root folder
-    with open(os.path.join(root_folder, "renaming_process.txt"), "w") as f:
-        f.write("Renaming process started")
-
-    # Walk through the directory
-    for subdir, _, files in os.walk(root_folder):
-        if subdir == root_folder:
-            continue  # Skip the root folder itself
-        
-        # Check if the subfolder is "אלבומי כיסים"
-        if os.path.basename(subdir) == "אלבומי כיסים":
-            files = sorted(files, reverse=True)
-        
-        for index, file in enumerate(files):
-            file_path = os.path.join(subdir, file)
-            file_extension = os.path.splitext(file)[1]
-            new_file_name = f"{parent_dir_name}_{index}{file_extension}"
-            new_file_path = os.path.join(subdir, new_file_name)
-            
-            # Check if the file is already renamed
-            if file == new_file_name:
-                continue
-            
-            os.rename(file_path, new_file_path)
-            print(f"Renamed: {file_path} to {new_file_path}")
+def main():
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
+    folder_path = filedialog.askdirectory(title="Select a Folder")
+    if folder_path:
+        rename_files_in_folder(folder_path)
 
 if __name__ == "__main__":
-    folder_path = input("Enter the folder path: ")
-    rename_files_in_subfolders(folder_path)
+    main()
