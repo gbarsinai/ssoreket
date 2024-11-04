@@ -21,6 +21,9 @@ def rename_files_in_folder(folder_path, label, processed_folders, processed_fold
         # Skip folders that were already processed
         if root in processed_folders:
             continue
+        
+        if "דיסקים" in root or "אלבומי דבק" in root or "סלילים" in root:
+            continue
 
         if files:
             # Update the label with the current folder being processed
@@ -32,7 +35,7 @@ def rename_files_in_folder(folder_path, label, processed_folders, processed_fold
             files = sorted(files, reverse=("אלבומי כיסים" in root))
             for index, filename in enumerate(files):
                 file_extension = os.path.splitext(filename)[1]
-                new_name = f"{parent_folder_name}_{index + 1}{file_extension}"
+                new_name = f"{parent_folder_name} {index + 1}{file_extension}"
                 os.rename(os.path.join(root, filename), os.path.join(root, new_name))
                 print(f"Renamed {filename} to {new_name}")
 
