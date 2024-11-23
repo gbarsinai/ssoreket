@@ -35,7 +35,7 @@ def rename_files_in_folder(folder_path, label, processed_folders, processed_fold
             files = sorted(files, reverse=("אלבומי כיסים" in root))
             for index, filename in enumerate(files):
                 file_extension = os.path.splitext(filename)[1]
-                new_name = f"{parent_folder_name} {index + 1}{file_extension}"
+                new_name = f"{index + 1} {parent_folder_name}{file_extension}"
                 os.rename(os.path.join(root, filename), os.path.join(root, new_name))
                 print(f"Renamed {filename} to {new_name}")
 
